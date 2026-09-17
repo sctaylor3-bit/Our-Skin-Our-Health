@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Our Skin, Our Health — clear, inclusive education about skin, hair, scalp, and nail health for people with skin of color.">
+  <title>Our Skin, Our Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1e2523;--muted:#64706b;--cream:#f7f5ef;--white:#fff;
+  --sage:#8aa69a;--deep:#2f5147;--mint:#dcebe3;--line:rgba(30,37,35,.12);
+  --gold:#c7a76b;--radius:28px;--shadow:0 24px 70px rgba(35,53,47,.10)
+}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.progress-bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:1000}
+.site-header{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 32px));height:72px;padding:10px 14px 10px 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.80);border:1px solid rgba(255,255,255,.9);border-radius:20px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 40px rgba(32,45,41,.10);z-index:100}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}
+.brand img{width:42px;height:42px;object-fit:contain;border-radius:10px}
+.desktop-nav{display:flex;gap:34px;font-size:.9rem;color:#47524e}
+.desktop-nav a{position:relative}
+.desktop-nav a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--deep);transition:.3s}
+.desktop-nav a:hover:after{width:100%}
+.header-cta{background:var(--deep);color:#fff;padding:11px 20px;border-radius:999px;font-size:.88rem;font-weight:700}
+.menu-toggle{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.menu-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px auto}
+.mobile-menu{display:none}
+.hero{min-height:100vh;position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.75fr);align-items:center;gap:70px;padding:150px max(7vw,32px) 90px;overflow:hidden;background:
+ radial-gradient(circle at 78% 35%,rgba(166, 156, 138, 0.28),transparent 25%),
+ radial-gradient(circle at 10% 80%,rgba(199,167,107,.10),transparent 22%),
+ linear-gradient(135deg,#f8f7f2,#edf4ef)}
+.hero-content{max-width:750px;position:relative;z-index:2}
+.eyebrow,.section-kicker,.card-label{font-size:.72rem;font-weight:700;letter-spacing:.18em;color:var(--deep)}
+.hero h1{font:600 clamp(3.5rem,7vw,7.6rem)/.93 "Playfair Display",serif;letter-spacing:-.055em;margin:22px 0 30px}
+.hero h1 em,.intro h2 em,.topics h2 em,.callout h2 em,.disclaimer h2 em{font-style:italic;color:var(--deep)}
+.hero-copy{font-size:1.1rem;color:var(--muted);max-width:610px}
+.hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{padding:15px 22px;border-radius:999px;font-weight:700;font-size:.9rem;transition:.3s}
+.btn-primary{background:var(--deep);color:#fff;box-shadow:0 12px 28px rgba(47,81,71,.22)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(47,81,71,.28)}
+.btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.55)}
+.btn-ghost:hover{background:#fff;transform:translateY(-3px)}
+.hero-card{justify-self:end;width:min(390px,100%);min-height:480px;border-radius:38px;position:relative;overflow:hidden;background:linear-gradient(145deg,#31564b,#71988a);box-shadow:var(--shadow);transform:rotate(2deg);z-index:2}
+.hero-card:before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.25);border-radius:28px}
+.orb{position:absolute;width:330px;height:330px;border-radius:50%;right:-80px;top:-60px;background:radial-gradient(circle at 35% 35%,#e6cfa0,transparent 50%),linear-gradient(145deg,#a5c2b5,#42675b);filter:blur(1px)}
+.hero-card-inner{position:absolute;left:42px;right:42px;bottom:42px;color:#fff}
+.hero-card .card-label{color:#d9e8e1}
+.hero-card h2{font:500 2.35rem/1.08 "Playfair Display",serif;margin:14px 0}
+.hero-card h2 em{font-style:italic}
+.hero-card p{color:rgba(255,255,255,.78);font-size:.92rem}
+.scroll-cue{position:absolute;bottom:32px;left:7vw;display:flex;align-items:center;gap:10px;color:#68736e;font-size:.75rem;letter-spacing:.05em}
+.scroll-cue span{width:32px;height:1px;background:#8d9993}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(1px);pointer-events:none}.glow-one{width:90px;height:90px;left:47%;top:17%;background:rgba(199,167,107,.18)}.glow-two{width:140px;height:140px;right:6%;bottom:9%;background:rgba(138,166,154,.16)}
+.section-shell{width:min(1180px,calc(100% - 48px));margin:0 auto;padding:120px 0}
+.intro{padding-top:150px}
+.intro-grid,.disclaimer-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;margin-top:25px}
+.intro h2,.topics h2,.callout h2,.disclaimer h2{font:600 clamp(2.8rem,5vw,5rem)/1.02 "Playfair Display",serif;letter-spacing:-.045em}
+.intro-copy{max-width:540px}.lead{font-size:1.35rem;line-height:1.5;color:#33413c;margin-bottom:24px}.intro-copy p+p{color:var(--muted)}
+.myths{padding-top:100px}.section-heading{display:grid;grid-template-columns:1fr .75fr;gap:80px;align-items:end;margin-bottom:50px}.section-heading h2{font:600 clamp(3rem,6vw,6rem)/.95 "Playfair Display",serif;letter-spacing:-.055em;margin-top:12px}.section-heading h2 span{font-style:italic;color:var(--gold)}.section-heading>p{color:var(--muted);max-width:480px}
+.myth-list{border-top:1px solid var(--line)}.myth{border-bottom:1px solid var(--line)}.myth-question{width:100%;padding:27px 4px;background:none;border:0;display:flex;align-items:center;justify-content:space-between;text-align:left;cursor:pointer;gap:20px}.myth-question span{font:500 clamp(1.15rem,2vw,1.55rem)/1.3 "Playfair Display",serif}.myth-question b{font:700 .7rem "DM Sans",sans-serif;letter-spacing:.1em;color:var(--gold);margin-right:22px}.myth-question i{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.2rem;transition:.35s;flex:none}.myth.open .myth-question i{transform:rotate(45deg);background:var(--deep);color:#fff;border-color:var(--deep)}
+.myth-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}.myth-answer p{overflow:hidden;color:var(--muted);max-width:760px;padding:0 70px 0 58px}.myth.open .myth-answer{grid-template-rows:1fr}.myth.open .myth-answer p{padding-bottom:30px}
+.topics{padding-top:90px}.topics-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin:18px 0 45px}.topics-head p{color:var(--muted);max-width:300px}.topic-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:16px}.topic-card{min-height:310px;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:#fff;border:1px solid rgba(30,37,35,.07);box-shadow:0 12px 45px rgba(35,53,47,.06);transition:.4s;position:relative;overflow:hidden}.topic-card:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-70px;background:var(--mint);transition:.5s}.topic-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}.topic-card:hover:before{transform:scale(1.5)}.topic-large{background:var(--deep);color:#fff}.topic-large:before{background:rgba(255,255,255,.09)}.topic-number{font-size:.72rem;font-weight:700;letter-spacing:.14em;opacity:.65}.topic-card small{font-size:.7rem;letter-spacing:.17em;font-weight:700;opacity:.65}.topic-card h3{font:500 2rem/1.05 "Playfair Display",serif;margin:10px 0}.topic-card p{font-size:.9rem;opacity:.72;max-width:310px}.arrow{align-self:flex-end;width:42px;height:42px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;position:relative;z-index:1;transition:.3s}.topic-card:hover .arrow{transform:rotate(45deg)}
+.callout{display:grid;grid-template-columns:auto 1fr .7fr;align-items:center;gap:35px;padding-top:105px;padding-bottom:105px}.callout-mark{width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:1.5rem}.callout p{color:var(--muted);max-width:360px}
+.disclaimer{padding-bottom:140px}.disclaimer-grid{margin-top:25px}.disclaimer-grid>div{color:var(--muted);max-width:600px}.disclaimer-grid p+p{margin-top:18px}
+footer{background:#1d2925;color:#fff;padding:70px max(7vw,32px) 28px}.footer-brand{font:500 clamp(2.4rem,5vw,5rem)/1 "Playfair Display",serif}.footer-brand em{color:#9fbaae}.footer>p,footer>p{color:rgba(255,255,255,.55);margin-top:12px}.footer-bottom{margin-top:80px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;color:rgba(255,255,255,.5);font-size:.78rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}.delay-2{transition-delay:.15s}
+@media(max-width:850px){
+  .desktop-nav,.header-cta{display:none}.menu-toggle{display:block}.mobile-menu{position:fixed;top:96px;left:16px;right:16px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:20px;padding:15px;z-index:99;box-shadow:var(--shadow);display:flex;flex-direction:column;transform:translateY(-20px);opacity:0;pointer-events:none;transition:.3s}.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}.mobile-menu a{padding:15px;border-radius:12px}.mobile-menu a:hover{background:var(--mint)}
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:140px}.hero-card{justify-self:start;width:min(410px,100%);min-height:390px}.scroll-cue{display:none}.intro-grid,.disclaimer-grid{grid-template-columns:1fr;gap:35px}.section-heading{grid-template-columns:1fr;gap:25px}.topic-grid{grid-template-columns:1fr}.topic-card{min-height:270px}.callout{grid-template-columns:auto 1fr}.callout p{grid-column:2}.section-shell{padding:85px 0}.intro{padding-top:110px}
+}
+@media(max-width:520px){
+  .site-header{top:10px;width:calc(100% - 20px)}.brand span{font-size:.85rem}.brand img{width:36px;height:36px}.hero{padding:125px 22px 70px}.hero h1{font-size:3.25rem}.hero-copy{font-size:1rem}.section-shell{width:calc(100% - 36px)}.myth-question{padding:22px 0}.myth-question b{margin-right:10px}.myth-answer p{padding-left:0;padding-right:15px}.myth.open .myth-answer p{padding-bottom:25px}.topics-head{display:block}.topics-head p{margin-top:18px}.callout{grid-template-columns:1fr;gap:22px}.callout p{grid-column:auto}.disclaimer h2{font-size:3.2rem}.footer-bottom{flex-direction:column;gap:12px;margin-top:55px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home" aria-label="Our Skin, Our Health home">
+      <img src="//images.squarespace-cdn.com/content/v1/6a13c18ccb17be777110735c/c89108b3-6e96-42ac-8271-a62952c7d769/FullLogo_Transparent_NoBuffer.png" alt="Our Skin, Our Health logo">
+      <span>Our Skin, Our Health</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#myths">Myth vs Fact</a>
+      <a href="#topics">Topics</a>
+      <a href="#disclaimer">Disclaimer</a>
+    </nav>
+
+    <a class="header-cta" href="#myths">Explore</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#myths">Myth vs Fact</a>
+    <a href="#topics">Topics</a>
+    <a href="#disclaimer">Disclaimer</a>
+  </div>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-glow glow-one"></div>
+      <div class="hero-glow glow-two"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">SKIN • HAIR • SCALP • NAILS</p>
+        <h1>Better information.<br><em>Healthier understanding.</em></h1>
+        <p class="hero-copy">
+          Clear, inclusive, culturally aware education designed to help people
+          with skin of color better understand their skin, scalp, and hair.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#myths">Learn something new <span>↗</span></a>
+          <a class="btn btn-ghost" href="#about">Our mission</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal delay-2">
+        <div class="orb"></div>
+        <div class="hero-card-inner">
+          <span class="card-label">TODAY'S REMINDER</span>
+          <h2>Your skin deserves information that considers <em>you.</em></h2>
+          <p>Evidence-based education can be clearer, more inclusive, and easier to use.</p>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#about"><span></span> Scroll to explore</a>
+    </section>
+
+    <section class="intro section-shell reveal" id="about">
+      <div class="section-kicker">01 / WHY THIS EXISTS</div>
+      <div class="intro-grid">
+        <div>
+          <h2>Skin health education should feel <em>accessible.</em></h2>
+        </div>
+        <div class="intro-copy">
+          <p class="lead">
+            Our mission is to make skin and hair education clearer, more inclusive,
+            and more useful for people with skin of color.
+          </p>
+          <p>
+            We translate evidence into practical, culturally aware education that
+            helps people better understand their skin, scalp, and hair.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="myths section-shell" id="myths">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-kicker">02 / CLEARING THE NOISE</div>
+          <h2>Myth <span>vs</span> Fact</h2>
+        </div>
+        <p>There’s a lot of skincare advice online. Not all of it is accurate — and not all of it is written with skin of color in mind.</p>
+      </div>
+
+      <div class="myth-list">
+        <article class="myth reveal">
+          <button class="myth-question" aria-expanded="false">
+            <span><b>01</b> “People with darker skin don’t need sunscreen.”</span>
+            <i>+</i>
+          </button>
+          <div class="myth-answer">
+            <p><strong>Fact:</strong> Skin of color can still experience sun damage, worsening hyperpigmentation, and even skin cancer. While melanin offers some natural protection, it does not fully prevent UV damage. Daily sunscreen is still an important part of protecting skin health.</p>
+          </div>
+        </article>
+
+        <article class="myth reveal">
+          <button class="myth-question" aria-expanded="false">
+            <span><b>02</b> “The dark spots are the acne.”</span>
+            <i>+</i>
+          </button>
+          <div class="myth-answer">
+            <p><strong>Fact:</strong> Acne and post-inflammatory hyperpigmentation are related, but they are not the same thing. Acne refers to active breakouts, while the dark marks left behind are often a separate issue caused by inflammation. In skin of color, both problems may need to be addressed.</p>
+          </div>
+        </article>
+
+        <article class="myth reveal">
+          <button class="myth-question" aria-expanded="false">
+            <span><b>03</b> “Natural products are always safer for sensitive skin.”</span>
+            <i>+</i>
+          </button>
+          <div class="myth-answer">
+            <p><strong>Fact:</strong> “Natural” does not automatically mean gentle, effective, or safe. Some natural oils, fragrances, and plant extracts can irritate skin, trigger eczema flares, or worsen breakouts and discoloration. What matters is whether an ingredient is appropriate for the concern and skin type.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="topics section-shell" id="topics">
+      <div class="section-kicker">03 / EXPLORE</div>
+      <div class="topics-head">
+        <h2>Education, without<br><em>the overwhelm.</em></h2>
+        <p>Start with the areas that matter most to you.</p>
+      </div>
+
+      <div class="topic-grid">
+        <a class="topic-card topic-large reveal" href="#myths">
+          <span class="topic-number">01</span>
+          <div><small>SKIN</small><h3>Understanding your skin</h3><p>Learn the difference between common concerns and the information behind them.</p></div>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="topic-card reveal" href="#myths">
+          <span class="topic-number">02</span>
+          <div><small>HAIR + SCALP</small><h3>Hair & scalp health</h3><p>Practical education for healthier routines.</p></div>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="topic-card reveal" href="#myths">
+          <span class="topic-number">03</span>
+          <div><small>NAILS</small><h3>Nail health</h3><p>Simple information for understanding changes and concerns.</p></div>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="callout section-shell reveal">
+      <div class="callout-mark">✦</div>
+      <div>
+        <div class="section-kicker">A BETTER WAY TO LEARN</div>
+        <h2>Less guessing.<br><em>More understanding.</em></h2>
+      </div>
+      <p>Good health education should be practical, respectful, and relevant to real people and real skin.</p>
+    </section>
+
+    <section class="disclaimer section-shell" id="disclaimer">
+      <div class="section-kicker">04 / IMPORTANT</div>
+      <div class="disclaimer-grid">
+        <h2>Educational<br><em>Disclaimer</em></h2>
+        <div>
+          <p>At Our Skin, Our Health, we are committed to providing reliable, evidence-based information about skin, hair, and nail health.</p>
+          <p>The content on this website is intended for educational purposes only and should not be used as a substitute for professional medical advice, diagnosis, or treatment.</p>
+          <p>Every individual's health needs are unique. If you have concerns about a skin, hair, or nail condition, we encourage you to consult a qualified healthcare professional or dermatologist.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">Our Skin, <em>Our Health.</em></div>
+    <p>Clearer. More inclusive. More useful.</p>
+    <div class="footer-bottom">
+      <span>© 2026 Our Skin, Our Health</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>const progressBar = document.getElementById("progressBar");
+const header = document.getElementById("siteHeader");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function updateScrollUI(){
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  progressBar.style.width = `${progress}%`;
+  header.classList.toggle("scrolled", window.scrollY > 30);
+}
+window.addEventListener("scroll", updateScrollUI, {passive:true});
+updateScrollUI();
+
+menuToggle.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+});
+
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  });
+});
+
+document.querySelectorAll(".myth-question").forEach(button => {
+  button.addEventListener("click", () => {
+    const item = button.closest(".myth");
+    const open = item.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(open));
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
