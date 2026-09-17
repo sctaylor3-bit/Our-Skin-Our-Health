@@ -1,6 +1,6 @@
 # Our-Skin-Our-Health
 
-# Downlaod .zip file.
+# Download .zip file.
 
 # Open index.html file.
 
